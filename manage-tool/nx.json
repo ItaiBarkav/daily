@@ -29,6 +29,9 @@
     "daily-e2e": {
       "tags": [],
       "implicitDependencies": ["daily"]
+    },
+    "material": {
+      "tags": []
     }
   }
 }
