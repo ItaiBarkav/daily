@@ -1,5 +1,12 @@
-<div>Daily</div>
-<div></div>
-<div>
-  <manage-tool-date-time></manage-tool-date-time>
-</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="header">
+    <span>Daily</span>
+    <span></span>
+    <span>
+      <mat-slide-toggle (change)="changeTheme()"></mat-slide-toggle>
+    </span>
+    <span>
+      <manage-tool-date-time></manage-tool-date-time>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>

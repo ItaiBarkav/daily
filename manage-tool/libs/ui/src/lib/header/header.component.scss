@@ -1,7 +1,6 @@
-:host {
+.header {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  background-color: lightseagreen;
-  padding: 20px;
+  grid-template-columns: auto 1fr auto auto;
+  border: 10px;
   align-items: center;
 }

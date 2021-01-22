@@ -1,5 +1,20 @@
-:host {
+.basic {
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100%;
+}
+
+.mat-slide-toggle-thumb {
+  background-image: url(https://cdn1.iconfinder.com/data/icons/world-weather/24/lighter-512.png) !important;
+  background-origin: content-box;
+  background-size: contain;
+  background-position: center center;
+}
+
+.mat-accent .mat-slide-toggle-thumb {
+  filter: grayscale(100%) !important;
+}
+
+.mat-checked .mat-slide-toggle-thumb {
+  filter: grayscale(0) !important;
 }

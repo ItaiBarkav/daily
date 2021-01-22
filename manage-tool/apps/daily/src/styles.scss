@@ -1,5 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/theming';
+@import 'assets/color';
+
+@include mat-core();
+
+$daily-light-primary: mat-palette($mat-indigo);
+$daily-light-accent: mat-palette($mat-pink, A200, A100, A400);
+$daily-light-warn: mat-palette($mat-red);
+
+$daily-light-theme: mat-light-theme(
+  $daily-light-primary,
+  $daily-light-accent,
+  $daily-light-warn
+);
+@include angular-material-theme($daily-light-theme);
+
+$daily-dark-primary: mat-palette($mat-green);
+$daily-dark-accent: mat-palette($mat-yellow, A200, A100, A400);
+$daily-dark-warn: mat-palette($mat-red);
+
+$daily-dark-theme: mat-dark-theme(
+  $daily-dark-primary,
+  $daily-dark-accent,
+  $daily-dark-warn
+);
+.dark-theme {
+  @include angular-material-theme($daily-dark-theme);
+}
 
 html,
 body {

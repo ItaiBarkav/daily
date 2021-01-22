@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'manage-tool-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  constructor(private themeService: ThemeService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  changeTheme(): void {
+    this.themeService.changeTheme();
   }
-
 }
