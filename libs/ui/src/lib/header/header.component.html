@@ -3,7 +3,10 @@
     <span>Daily</span>
     <span></span>
     <span>
-      <mat-slide-toggle (change)="changeTheme()"></mat-slide-toggle>
+      <mat-slide-toggle
+        [checked]="isDarkTheme"
+        (change)="changeTheme()"
+      ></mat-slide-toggle>
     </span>
     <span>
       <manage-tool-date-time></manage-tool-date-time>
