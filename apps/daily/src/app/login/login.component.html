@@ -1,0 +1,58 @@
+<div class="login-div">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <mat-card color="primary" class="login">
+      <mat-card-title> Login </mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput placeholder="Team" formControlName="teamName" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Sprint dates</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              placeholder="Start date"
+              formControlName="startDate"
+            />
+            <input
+              matEndDate
+              placeholder="End date"
+              formControlName="endDate"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Sprint duration (days)"
+            formControlName="sprintDuration"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Quarter</mat-label>
+          <mat-select formControlName="quarter">
+            <mat-option
+              *ngFor="let quarterValue of quarters"
+              [value]="quarterValue"
+            >
+              {{ quarterValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          login
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

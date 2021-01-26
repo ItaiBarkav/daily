@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'manage-tool-date-time',
@@ -6,8 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./date-time.component.scss'],
 })
 export class DateTimeComponent {
-  dateTime: any;
+  private dateTime$ = new ReplaySubject<Date>(1);
+
   constructor() {
-    setInterval(() => (this.dateTime = new Date()), 1000);
+    this.dateTime$.subscribe(() => {
+      setTimeout(() => {
+        this.updateDateTime();
+      }, 1000);
+    });
+
+    this.updateDateTime();
+  }
+
+  get dateTime(): Observable<Date> {
+    return this.dateTime$.asObservable();
+  }
+
+  private updateDateTime(): void {
+    this.dateTime$.next(new Date());
   }
 }
