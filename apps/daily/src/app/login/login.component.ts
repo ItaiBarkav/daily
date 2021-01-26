@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { filter, pairwise } from 'rxjs/operators';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'manage-tool-login',
@@ -20,13 +21,14 @@ export class LoginComponent {
     ],
     quarter: ['', Validators.required],
   });
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.updateSprintDuration();
     this.updateSprintendDate();
   }
 
   onLogin(): void {
-    console.log('Login !');
+    this.loginService.login(this.loginForm);
   }
 
   private updateSprintDuration(): void {

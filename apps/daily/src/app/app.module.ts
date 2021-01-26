@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@manage-tool/material';
 import { UiModule } from '@manage-tool/ui';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 @NgModule({
@@ -13,6 +14,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     MaterialModule,
     UiModule,
   ],
