@@ -7,9 +7,12 @@ import { MaterialModule } from '@manage-tool/material';
 import { UiModule } from '@manage-tool/ui';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -18,7 +21,11 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     UiModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [
+    AuthGuard,
+    AuthService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
