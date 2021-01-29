@@ -1,6 +1,23 @@
 .header {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
   border: 10px;
   align-items: center;
+}
+
+.header > span {
+  margin: 0px 8px;
+}
+
+.login-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.team-name {
+  text-align: right;
+}
+
+.settings {
+  height: 25px;
 }

@@ -1,7 +1,22 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="header">
     <span>Daily</span>
-    <span></span>
+    <div>
+      <span *ngIf="loginData" class="login-data">
+        <span class="team-name">{{ loginData.teamName }}</span>
+        <span>
+          <span
+            >{{ loginData.startDate | date: 'd/M/yy' }} -
+            {{ loginData.endDate | date: 'd/M/yy' }}</span
+          >
+          <span>S{{ loginData.sprintNumber }}</span>
+          <span>Q{{ loginData.quarter }}</span>
+        </span>
+      </span>
+    </div>
+    <span class="settings">
+      <mat-icon>settings</mat-icon>
+    </span>
     <span>
       <mat-slide-toggle
         [checked]="isDarkTheme"

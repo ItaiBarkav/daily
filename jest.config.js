@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/daily',
     '<rootDir>/libs/material',
     '<rootDir>/libs/ui',
+    '<rootDir>/libs/models',
   ],
 };

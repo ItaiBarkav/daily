@@ -10,6 +10,7 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent {
   quarters = [1, 2, 3, 4];
+  sprintNumbers = [1, 2, 3, 4, 5, 6];
 
   loginForm = this.fb.group({
     teamName: ['', [Validators.required, Validators.minLength(2)]],
@@ -19,6 +20,7 @@ export class LoginComponent {
       '',
       [Validators.required, Validators.min(1), Validators.max(31)],
     ],
+    sprintNumber: ['', Validators.required],
     quarter: ['', Validators.required],
   });
 

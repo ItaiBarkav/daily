@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginData } from '@manage-tool/models';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  teamName: string;
-  startDate: Date;
-  endDate: Date;
-  sprintDuration: number;
-  quarter: number;
+  private islogin$ = new BehaviorSubject<boolean>(false);
+  loginData: LoginData;
 
   constructor(
     private router: Router,
@@ -20,15 +19,13 @@ export class LoginService {
   ) {}
 
   login(loginForm: FormGroup): void {
-    this.authService.isLogin = true;
-
-    const loginData = loginForm.value;
-    this.teamName = loginData.teamName;
-    this.startDate = loginData.startDate;
-    this.endDate = loginData.endDate;
-    this.sprintDuration = loginData.sprintDuration;
-    this.quarter = loginData.quarter;
-
+    this.authService.doLogin(true);
+    this.loginData = loginForm.value;
+    this.islogin$.next(true);
     this.router.navigate(['dashboard'], { relativeTo: this.route });
+  }
+
+  islogin(): Observable<boolean> {
+    return this.islogin$.asObservable();
   }
 }

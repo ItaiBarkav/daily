@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@manage-tool/material": ["libs/material/src/index.ts"],
-      "@manage-tool/ui": ["libs/ui/src/index.ts"]
+      "@manage-tool/ui": ["libs/ui/src/index.ts"],
+      "@manage-tool/models": ["libs/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
