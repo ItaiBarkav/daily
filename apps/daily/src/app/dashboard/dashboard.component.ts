@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
 
 @Component({
   selector: 'manage-tool-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  constructor() {}
+export class DashboardComponent {
+  constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  openAddMemberDialog(): void {
+    this.dialog.open(AddMemberDialogComponent);
+  }
 }

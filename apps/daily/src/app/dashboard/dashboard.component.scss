@@ -1,0 +1,14 @@
+:host {
+  display: grid;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.options {
+  display: flex;
+  place-content: flex-end;
+  margin: 10px;
+}

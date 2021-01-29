@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@manage-tool/material';
 import { UiModule } from '@manage-tool/ui';
+import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
@@ -12,7 +13,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    AddMemberDialogComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
