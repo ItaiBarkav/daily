@@ -1,5 +1,12 @@
 <div class="dashboard">
-  <div>dashboard</div>
+  <div>
+    <div class="team-members" *ngIf="names.length !== 0">
+      <manage-tool-team-member-card
+        *ngFor="let name of names"
+        [name]="name"
+      ></manage-tool-team-member-card>
+    </div>
+  </div>
   <div class="options">
     <button mat-fab color="primary" (click)="openAddMemberDialog()">
       <mat-icon>add</mat-icon>

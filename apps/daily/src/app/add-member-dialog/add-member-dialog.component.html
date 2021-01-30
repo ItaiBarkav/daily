@@ -1,10 +1,18 @@
 <span mat-mat-dialog-title>Add team member</span>
 <mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name" />
+    <input matInput placeholder="Name" [formControl]="name" />
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions class="actions">
-  <button mat-raised-button color="primary">Add</button>
-  <button mat-button color="primary">Cancel</button>
+  <button mat-button mat-dialog-close color="primary">Cancel</button>
+  <button
+    mat-raised-button
+    mat-dialog-close
+    color="primary"
+    (click)="addTeamMember()"
+    [disabled]="!name.valid"
+  >
+    Add
+  </button>
 </mat-dialog-actions>
