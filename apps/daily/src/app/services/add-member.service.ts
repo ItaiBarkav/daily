@@ -13,7 +13,7 @@ export class AddMemberService {
     return this.name$;
   }
 
-  AddName(name: string): void {
+  addName(name: string): void {
     this.name$.next(name);
   }
 }

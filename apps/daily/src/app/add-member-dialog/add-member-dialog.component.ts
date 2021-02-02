@@ -13,6 +13,6 @@ export class AddMemberDialogComponent {
   constructor(private addMemberService: AddMemberService) {}
 
   addTeamMember(): void {
-    this.addMemberService.AddName(this.name.value);
+    this.addMemberService.addName(this.name.value);
   }
 }

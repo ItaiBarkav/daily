@@ -12,6 +12,7 @@ export class ThemeService {
   constructor(private overlayContainer: OverlayContainer) {
     if (localStorage.getItem('isDarkTheme')) {
       this.isDarkTheme$.next(true);
+      this.addToOverlay();
     }
   }
 
@@ -19,15 +20,21 @@ export class ThemeService {
     this.isDarkTheme$.next(!this.isDarkTheme$.value);
     if (this.isDarkTheme$.value) {
       localStorage.setItem('isDarkTheme', 'true');
-      this.overlayContainer
-        .getContainerElement()
-        .classList.add(this.DARK_THEME);
+      this.addToOverlay();
     } else {
       localStorage.removeItem('isDarkTheme');
-      this.overlayContainer
-        .getContainerElement()
-        .classList.remove(this.DARK_THEME);
+      this.removeFromOverlay();
     }
+  }
+
+  private addToOverlay(): void {
+    this.overlayContainer.getContainerElement().classList.add(this.DARK_THEME);
+  }
+
+  private removeFromOverlay(): void {
+    this.overlayContainer
+      .getContainerElement()
+      .classList.remove(this.DARK_THEME);
   }
 
   get isDarkTheme(): Observable<boolean> {

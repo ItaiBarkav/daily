@@ -1,3 +1,70 @@
 <mat-card>
-  <mat-card-title>{{ name }}</mat-card-title>
+  <mat-card-title class="title">{{ name }}</mat-card-title>
+  <mat-card-content class="goals">
+    <mat-checkbox
+      *ngFor="let control of goals.controls; index as i"
+      (change)="goalChecked($event, i)"
+    >
+      <mat-form-field appearance="standard">
+        <input
+          matInput
+          type="text"
+          placeholder="Add goal"
+          [formControl]="goals.controls[i]"
+      /></mat-form-field>
+      <button
+        class="icon"
+        mat-icon-button
+        color="primary"
+        (click)="removeFormControl(goals, i)"
+      >
+        <mat-icon class="icon">remove_circle_outline</mat-icon>
+      </button>
+    </mat-checkbox>
+    <button
+      class="icon add-goal"
+      mat-icon-button
+      color="primary"
+      (click)="addGoal()"
+      [disabled]="!goals.valid"
+    >
+      <mat-icon class="icon">add_circle_outline</mat-icon>
+    </button>
+  </mat-card-content>
+  <div *ngIf="finishedGoals.controls.length !== 0">
+    <mat-divider></mat-divider>
+    <mat-card-content class="goals finished-goals">
+      <mat-checkbox
+        [checked]="true"
+        *ngFor="let control of finishedGoals.controls; index as i"
+        (change)="finishedGoalChecked($event, i)"
+      >
+        <mat-form-field ng-disabled="true" appearance="standard">
+          <input
+            matInput
+            class="strikethrough"
+            type="text"
+            [formControl]="finishedGoals.controls[i]"
+        /></mat-form-field>
+        <button
+          class="icon"
+          mat-icon-button
+          color="primary"
+          (click)="removeFormControl(finishedGoals, i)"
+        >
+          <mat-icon class="icon">remove_circle_outline</mat-icon>
+        </button>
+      </mat-checkbox>
+    </mat-card-content>
+  </div>
+  <div class="delete-div">
+    <button
+      class="icon delete-btn"
+      mat-icon-button
+      color="primary"
+      (click)="deleteCard()"
+    >
+      <mat-icon class="icon">delete</mat-icon>
+    </button>
+  </div>
 </mat-card>

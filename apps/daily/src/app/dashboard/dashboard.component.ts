@@ -25,4 +25,8 @@ export class DashboardComponent {
   openAddMemberDialog(): void {
     this.dialog.open(AddMemberDialogComponent);
   }
+
+  deleteMember(memberName: string): void {
+    this.names = this.names.filter((name: string) => name !== memberName);
+  }
 }

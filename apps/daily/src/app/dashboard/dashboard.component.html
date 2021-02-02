@@ -4,11 +4,12 @@
       <manage-tool-team-member-card
         *ngFor="let name of names"
         [name]="name"
+        (delete)="deleteMember($event)"
       ></manage-tool-team-member-card>
     </div>
   </div>
   <div class="options">
-    <button mat-fab color="primary" (click)="openAddMemberDialog()">
+    <button mat-mini-fab color="primary" (click)="openAddMemberDialog()">
       <mat-icon>add</mat-icon>
     </button>
   </div>
