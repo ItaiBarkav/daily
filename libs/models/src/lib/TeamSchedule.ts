@@ -1,4 +1,4 @@
-export interface LoginData {
+export interface TeamSchedule {
   teamName: string;
   startDate: Date;
   endDate: Date;

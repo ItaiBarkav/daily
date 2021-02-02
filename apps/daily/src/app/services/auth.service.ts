@@ -17,7 +17,7 @@ export class AuthService {
     return this.isLogin$.value;
   }
 
-  doLogin(isLogin: boolean): void {
+  authLogin(isLogin: boolean): void {
     this.isLogin$.next(isLogin);
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
-import { AddMemberService } from '../services/add-member.service';
+import { TeamMemberService } from '../services/team-members.service';
 
 @Component({
   selector: 'manage-tool-dashboard',
@@ -9,24 +9,16 @@ import { AddMemberService } from '../services/add-member.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  names = new Array<string>();
-
   constructor(
-    private dialog: MatDialog,
-    private addMemberService: AddMemberService
-  ) {
-    this.addMemberService.name().subscribe((name: string) => {
-      if (name) {
-        this.names.push(name);
-      }
-    });
-  }
+    public addMemberService: TeamMemberService,
+    private dialog: MatDialog
+  ) {}
 
   openAddMemberDialog(): void {
     this.dialog.open(AddMemberDialogComponent);
   }
 
-  deleteMember(memberName: string): void {
-    this.names = this.names.filter((name: string) => name !== memberName);
+  deleteMember(name: string): void {
+    this.addMemberService.removeTeamMember(name);
   }
 }

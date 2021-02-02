@@ -2,15 +2,15 @@
   <mat-toolbar-row class="header">
     <span>Daily</span>
     <div>
-      <span *ngIf="loginData" class="login-data">
-        <span class="team-name">{{ loginData.teamName }}</span>
+      <span *ngIf="teamSchedule" class="login-data">
+        <span class="team-name">{{ teamSchedule.teamName }}</span>
         <span>
           <span
-            >{{ loginData.startDate | date: 'd/M/yy' }} -
-            {{ loginData.endDate | date: 'd/M/yy' }}</span
+            >{{ teamSchedule.startDate | date: 'd/M/yy' }} -
+            {{ teamSchedule.endDate | date: 'd/M/yy' }}</span
           >
-          <span>S{{ loginData.sprintNumber }}</span>
-          <span>Q{{ loginData.quarter }}</span>
+          <span>S{{ teamSchedule.sprintNumber }}</span>
+          <span>Q{{ teamSchedule.quarter }}</span>
         </span>
       </span>
     </div>

@@ -1,12 +1,10 @@
 <div class="dashboard">
-  <div>
-    <div class="team-members" *ngIf="names.length !== 0">
-      <manage-tool-team-member-card
-        *ngFor="let name of names"
-        [name]="name"
-        (delete)="deleteMember($event)"
-      ></manage-tool-team-member-card>
-    </div>
+  <div class="team-members">
+    <manage-tool-team-member-card
+      *ngFor="let name of addMemberService.teamMembersNames() | async"
+      [name]="name"
+      (delete)="deleteMember($event)"
+    ></manage-tool-team-member-card>
   </div>
   <div class="options">
     <button mat-mini-fab color="primary" (click)="openAddMemberDialog()">

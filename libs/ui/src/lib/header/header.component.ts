@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { LoginData } from '@manage-tool/models';
+import { TeamSchedule } from '@manage-tool/models';
 import { ThemeService } from '../theme.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ThemeService } from '../theme.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnChanges {
-  @Input() loginData: LoginData;
+  @Input() teamSchedule: TeamSchedule;
 
   isDarkTheme: boolean;
 
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.loginData = changes.loginData.currentValue;
+    this.teamSchedule = changes.teamSchedule.currentValue;
   }
 
   changeTheme(): void {

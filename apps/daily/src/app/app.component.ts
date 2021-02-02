@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { LoginData } from '@manage-tool/models';
+import { TeamSchedule } from '@manage-tool/models';
 import { ThemeService } from 'libs/ui/src/lib/theme.service';
 import { LoginService } from './services/login.service';
 
@@ -11,7 +11,7 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent {
   isDarkTheme: boolean;
-  loginData: LoginData;
+  teamSchedule: TeamSchedule;
 
   constructor(
     private themeService: ThemeService,
@@ -30,7 +30,7 @@ export class AppComponent {
   private loginSubscription(): void {
     this.loginService.islogin().subscribe((isLogin: boolean) => {
       if (isLogin) {
-        this.loginData = this.loginService.loginData;
+        this.teamSchedule = this.loginService.teamScheduleData;
       }
     });
   }

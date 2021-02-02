@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { AddMemberService } from '../services/add-member.service';
+import { TeamMemberService } from '../services/team-members.service';
 
 @Component({
   selector: 'manage-tool-add-member-dialog',
@@ -10,9 +10,9 @@ import { AddMemberService } from '../services/add-member.service';
 export class AddMemberDialogComponent {
   name = new FormControl('', [Validators.required, Validators.minLength(2)]);
 
-  constructor(private addMemberService: AddMemberService) {}
+  constructor(private addMemberService: TeamMemberService) {}
 
   addTeamMember(): void {
-    this.addMemberService.addName(this.name.value);
+    this.addMemberService.addTeamMember(this.name.value);
   }
 }

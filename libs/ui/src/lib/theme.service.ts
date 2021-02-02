@@ -7,10 +7,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ThemeService {
   private readonly DARK_THEME = 'dark-theme';
+  private readonly IS_DARK_THEME = 'isDarkTheme';
   private isDarkTheme$ = new BehaviorSubject(false);
 
   constructor(private overlayContainer: OverlayContainer) {
-    if (localStorage.getItem('isDarkTheme')) {
+    if (localStorage.getItem(this.IS_DARK_THEME)) {
       this.isDarkTheme$.next(true);
       this.addToOverlay();
     }
@@ -19,10 +20,10 @@ export class ThemeService {
   changeTheme(): void {
     this.isDarkTheme$.next(!this.isDarkTheme$.value);
     if (this.isDarkTheme$.value) {
-      localStorage.setItem('isDarkTheme', 'true');
+      localStorage.setItem(this.IS_DARK_THEME, 'true');
       this.addToOverlay();
     } else {
-      localStorage.removeItem('isDarkTheme');
+      localStorage.removeItem(this.IS_DARK_THEME);
       this.removeFromOverlay();
     }
   }
