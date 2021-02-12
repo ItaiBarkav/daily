@@ -3,6 +3,7 @@
   grid-template-rows: auto auto 1fr auto;
   height: 100%;
   user-select: none;
+  background-color: var(--body-background);
 }
 
 .mat-slide-toggle-thumb {

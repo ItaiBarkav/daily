@@ -3,8 +3,8 @@
 
 @include mat-core();
 
-$daily-light-primary: mat-palette($mat-indigo);
-$daily-light-accent: mat-palette($mat-pink, A200, A100, A400);
+$daily-light-primary: mat-palette($mat-indigo, 800);
+$daily-light-accent: mat-palette($mat-blue);
 $daily-light-warn: mat-palette($mat-red);
 
 $daily-light-theme: mat-light-theme(
@@ -14,8 +14,8 @@ $daily-light-theme: mat-light-theme(
 );
 @include angular-material-theme($daily-light-theme);
 
-$daily-dark-primary: mat-palette($mat-green);
-$daily-dark-accent: mat-palette($mat-yellow, A200, A100, A400);
+$daily-dark-primary: mat-palette($mat-indigo, 800);
+$daily-dark-accent: mat-palette($mat-blue);
 $daily-dark-warn: mat-palette($mat-red);
 
 $daily-dark-theme: mat-dark-theme(

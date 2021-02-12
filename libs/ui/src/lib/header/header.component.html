@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="header">
-    <span>Daily</span>
+    <img class="logo" src="../../assets/ui/daily.png" />
     <div>
       <span *ngIf="teamSchedule" class="login-data">
         <span class="team-name">{{ teamSchedule.teamName }}</span>
-        <span>
-          <span
+        <span class="sprint-data">
+          <span class="date"
             >{{ teamSchedule.startDate | date: 'd/M/yy' }} -
             {{ teamSchedule.endDate | date: 'd/M/yy' }}</span
           >

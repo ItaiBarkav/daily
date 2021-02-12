@@ -5,7 +5,7 @@
       *ngFor="let control of goals.controls; index as i"
       (change)="goalChecked($event, i)"
     >
-      <mat-form-field appearance="standard">
+      <mat-form-field color="accent" appearance="standard">
         <input
           matInput
           type="text"
@@ -15,7 +15,7 @@
       <button
         class="icon"
         mat-icon-button
-        color="primary"
+        color="accent"
         (click)="removeFormControl(goals, i)"
       >
         <mat-icon class="icon">remove_circle_outline</mat-icon>
@@ -24,7 +24,7 @@
     <button
       class="icon add-goal"
       mat-icon-button
-      color="primary"
+      color="accent"
       (click)="addGoal()"
       [disabled]="!goals.valid"
     >
@@ -49,7 +49,7 @@
         <button
           class="icon"
           mat-icon-button
-          color="primary"
+          color="accent"
           (click)="removeFormControl(finishedGoals, i)"
         >
           <mat-icon class="icon">remove_circle_outline</mat-icon>
@@ -61,7 +61,7 @@
     <button
       class="icon delete-btn"
       mat-icon-button
-      color="primary"
+      color="accent"
       (click)="deleteCard()"
     >
       <mat-icon class="icon">delete</mat-icon>

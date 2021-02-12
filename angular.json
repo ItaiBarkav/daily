@@ -16,7 +16,15 @@
             "polyfills": "apps/daily/src/polyfills.ts",
             "tsConfig": "apps/daily/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/daily/src/favicon.ico", "apps/daily/src/assets"],
+            "assets": [
+              "apps/daily/src/favicon.ico",
+              "apps/daily/src/assets",
+              {
+                "input": "libs/ui/src/assets",
+                "glob": "**/*",
+                "output": "assets/ui"
+              }
+            ],
             "styles": ["apps/daily/src/styles.scss"],
             "scripts": []
           },

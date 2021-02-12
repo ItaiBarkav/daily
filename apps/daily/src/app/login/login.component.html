@@ -1,12 +1,12 @@
 <div class="login-div">
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <mat-card color="primary" class="login">
+    <mat-card class="login mat-elevation-z8">
       <mat-card-title> Login </mat-card-title>
       <mat-card-content>
-        <mat-form-field>
+        <mat-form-field color="accent">
           <input matInput placeholder="Team" formControlName="teamName" />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field color="accent">
           <mat-label>Sprint dates</mat-label>
           <mat-date-range-input [rangePicker]="picker">
             <input
@@ -26,14 +26,14 @@
           ></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field color="accent">
           <input
             matInput
             placeholder="Sprint duration (days)"
             formControlName="sprintDuration"
           />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field color="accent">
           <mat-label>Sprint number</mat-label>
           <mat-select formControlName="sprintNumber">
             <mat-option
@@ -44,7 +44,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field color="accent">
           <mat-label>Quarter</mat-label>
           <mat-select formControlName="quarter">
             <mat-option
@@ -57,7 +57,7 @@
         </mat-form-field>
         <button
           mat-raised-button
-          color="primary"
+          color="accent"
           type="submit"
           [disabled]="!loginForm.valid"
         >
