@@ -13,7 +13,10 @@ export class LoginComponent {
   sprintNumbers = [1, 2, 3, 4, 5, 6];
 
   loginForm = this.fb.group({
-    teamName: ['', [Validators.required, Validators.minLength(2)]],
+    teamName: [
+      { value: '', disabled: false },
+      [Validators.required, Validators.minLength(2)],
+    ],
     startDate: ['', Validators.required],
     endDate: ['', Validators.required],
     sprintDuration: [
