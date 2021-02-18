@@ -15,7 +15,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   encapsulation: ViewEncapsulation.None,
 })
 export class TeamMemberCardComponent {
-  @Input() name: string = 'itai';
+  @Input() name: string;
   @Output() delete = new EventEmitter<string>();
 
   goals = new FormArray([]);

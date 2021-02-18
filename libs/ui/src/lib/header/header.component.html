@@ -15,7 +15,11 @@
       </span>
     </div>
     <span>
-      <button mat-icon-button (click)="openSettingsDialog()">
+      <button
+        *ngIf="teamSchedule"
+        mat-icon-button
+        (click)="openSettingsDialog()"
+      >
         <mat-icon>settings</mat-icon>
       </button>
     </span>

@@ -18,7 +18,22 @@ export class TeamScheduleStoreService {
     return this.teamSchedule$.value;
   }
 
-  updateTeamScheduale(teamSchedule: TeamSchedule): void {
+  updateTeamSchedule(teamSchedule: TeamSchedule): void {
     this.teamSchedule$.next(teamSchedule);
+  }
+
+  updateTeamScheduleFromSettings(teamSchedule: TeamSchedule): void {
+    const currentTeamSchedule = this.teamScheduleValue();
+
+    this.teamSchedule$.next({
+      teamName: currentTeamSchedule.teamName,
+      startDate: teamSchedule.startDate ?? currentTeamSchedule.startDate,
+      endDate: teamSchedule.endDate ?? currentTeamSchedule.endDate,
+      sprintDuration:
+        teamSchedule.sprintDuration ?? currentTeamSchedule.sprintDuration,
+      sprintNumber:
+        teamSchedule.sprintNumber ?? currentTeamSchedule.sprintNumber,
+      quarter: teamSchedule.quarter ?? currentTeamSchedule.quarter,
+    });
   }
 }

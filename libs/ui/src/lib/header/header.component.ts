@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TeamSchedule } from '@manage-tool/models';
 import { ThemeService } from '../theme.service';
@@ -11,7 +18,7 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
 })
 export class HeaderComponent implements OnChanges {
   @Input() teamSchedule: TeamSchedule;
-
+  @Output() updateTeamSchedule = new EventEmitter<TeamSchedule>();
   isDarkTheme: boolean;
 
   constructor(private themeService: ThemeService, private dialog: MatDialog) {
@@ -29,6 +36,11 @@ export class HeaderComponent implements OnChanges {
   }
 
   openSettingsDialog(): void {
-    this.dialog.open(SettingsDialogComponent);
+    const settingsDialog = this.dialog.open(SettingsDialogComponent);
+    settingsDialog.componentInstance.teamSchedule.subscribe(
+      (teamSchedule: TeamSchedule) => {
+        this.updateTeamSchedule.emit(teamSchedule);
+      }
+    );
   }
 }

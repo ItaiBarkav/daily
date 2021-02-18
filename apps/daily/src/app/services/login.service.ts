@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TeamSchedule } from '@manage-tool/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { TeamScheduleStoreService } from './team-schedule-store.service';
@@ -18,9 +18,9 @@ export class LoginService {
     private teamScheduleStoreService: TeamScheduleStoreService
   ) {}
 
-  login(loginForm: FormGroup): void {
+  login(teamSchedule: TeamSchedule): void {
     this.authService.authLogin(true);
-    this.teamScheduleStoreService.updateTeamScheduale(loginForm.value);
+    this.teamScheduleStoreService.updateTeamSchedule(teamSchedule);
     this.islogin$.next(true);
     this.router.navigate(['dashboard'], { relativeTo: this.route });
   }

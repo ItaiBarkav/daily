@@ -1,0 +1,81 @@
+<div class="team-info-div">
+  <form [formGroup]="teamInfoForm" (ngSubmit)="onSave()">
+    <mat-card class="team-info mat-elevation-z8">
+      <mat-card-title> {{ title }} </mat-card-title>
+      <mat-card-content>
+        <mat-form-field *ngIf="showTeamName" color="accent">
+          <input matInput placeholder="Team" formControlName="teamName" />
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Sprint dates</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              placeholder="Start date"
+              formControlName="startDate"
+            />
+            <input
+              matEndDate
+              placeholder="End date"
+              formControlName="endDate"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <input
+            matInput
+            placeholder="Sprint duration (days)"
+            formControlName="sprintDuration"
+          />
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Sprint number</mat-label>
+          <mat-select formControlName="sprintNumber">
+            <mat-option
+              *ngFor="let sprintNumberValue of sprintNumbers"
+              [value]="sprintNumberValue"
+            >
+              {{ sprintNumberValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Quarter</mat-label>
+          <mat-select formControlName="quarter">
+            <mat-option
+              *ngFor="let quarterValue of quarters"
+              [value]="quarterValue"
+            >
+              {{ quarterValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          *ngIf="showTeamName; else closeDialog"
+          mat-raised-button
+          color="accent"
+          type="submit"
+          [disabled]="!teamInfoForm.valid && showTeamName"
+        >
+          {{ saveButtonName }}
+        </button>
+        <ng-template #closeDialog>
+          <button
+            mat-raised-button
+            mat-dialog-close
+            color="accent"
+            type="submit"
+            [disabled]="!teamInfoForm.valid && showTeamName"
+          >
+            {{ saveButtonName }}
+          </button>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

@@ -21,6 +21,11 @@ export class AppComponent {
   ) {
     this.darkThemeSubscription();
     this.loginSubscription();
+    this.teamScheduleSubscription();
+  }
+
+  updateTeamSchedule(teamSchedule: TeamSchedule): void {
+    this.teamScheduleStoreService.updateTeamScheduleFromSettings(teamSchedule);
   }
 
   private darkThemeSubscription(): void {
@@ -35,5 +40,13 @@ export class AppComponent {
         this.teamSchedule = this.teamScheduleStoreService.teamScheduleValue();
       }
     });
+  }
+
+  private teamScheduleSubscription(): void {
+    this.teamScheduleStoreService
+      .teamSchedule()
+      .subscribe(
+        (teamSchedule: TeamSchedule) => (this.teamSchedule = teamSchedule)
+      );
   }
 }
