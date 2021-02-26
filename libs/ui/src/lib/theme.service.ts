@@ -8,9 +8,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ThemeService {
   private readonly DARK_THEME = 'dark-theme';
   private readonly IS_DARK_THEME = 'isDarkTheme';
-  private isDarkTheme$ = new BehaviorSubject(false);
+  private isDarkTheme$ = new BehaviorSubject(true);
 
   constructor(private overlayContainer: OverlayContainer) {
+    this.addToOverlay();
+
     if (localStorage.getItem(this.IS_DARK_THEME)) {
       this.isDarkTheme$.next(true);
       this.addToOverlay();
