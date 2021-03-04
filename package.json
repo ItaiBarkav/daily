@@ -26,7 +26,6 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "heroku-postbuild": "npm i --legacy-peer-deps && ng build --prod"
   },
   "private": true,
   "dependencies": {
