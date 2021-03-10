@@ -41,7 +41,7 @@ export class TeamMemberCardComponent {
   }
 
   finishedGoalChecked(event: MatCheckboxChange, index: number): void {
-    if (event.checked === false) {
+    if (!event.checked) {
       this.goals.push(this.spliceFormArray(this.finishedGoals, index));
       this.enableFormControls();
     }

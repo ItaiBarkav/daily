@@ -1,7 +1,7 @@
 <div class="dashboard">
   <div class="team-members">
     <manage-tool-team-member-card
-      *ngFor="let name of addMemberService.teamMembersNames() | async"
+      *ngFor="let name of getTeamMembersNames() | async"
       [name]="name"
       (delete)="deleteMember($event)"
     ></manage-tool-team-member-card>

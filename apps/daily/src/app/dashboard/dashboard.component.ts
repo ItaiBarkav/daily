@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
 import { TeamMemberService } from '../services/team-members.service';
 
@@ -10,7 +11,7 @@ import { TeamMemberService } from '../services/team-members.service';
 })
 export class DashboardComponent {
   constructor(
-    public addMemberService: TeamMemberService,
+    private addMemberService: TeamMemberService,
     private dialog: MatDialog
   ) {}
 
@@ -20,5 +21,9 @@ export class DashboardComponent {
 
   deleteMember(name: string): void {
     this.addMemberService.removeTeamMember(name);
+  }
+
+  getTeamMembersNames(): Observable<string[]> {
+    return this.addMemberService.teamMembersNames();
   }
 }
