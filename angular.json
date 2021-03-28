@@ -61,7 +61,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "daily:build"
+            "browserTarget": "daily:build",
+            "proxyConfig": "apps/daily/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -195,6 +196,61 @@
           "outputs": ["coverage/libs/models"],
           "options": {
             "jestConfig": "libs/models/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "daily-server": {
+      "root": "apps/daily-server",
+      "sourceRoot": "apps/daily-server/src",
+      "projectType": "application",
+      "prefix": "daily-server",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/daily-server",
+            "main": "apps/daily-server/src/main.ts",
+            "tsConfig": "apps/daily-server/tsconfig.app.json",
+            "assets": ["apps/daily-server/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/daily-server/src/environments/environment.ts",
+                  "with": "apps/daily-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "daily-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/daily-server/tsconfig.app.json",
+              "apps/daily-server/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/daily-server/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/daily-server"],
+          "options": {
+            "jestConfig": "apps/daily-server/jest.config.js",
             "passWithNoTests": true
           }
         }

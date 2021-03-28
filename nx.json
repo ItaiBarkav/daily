@@ -20,6 +20,7 @@
     "daily-e2e": { "tags": [], "implicitDependencies": ["daily"] },
     "material": { "tags": [] },
     "ui": { "tags": [] },
-    "models": { "tags": [] }
+    "models": { "tags": [] },
+    "daily-server": { "tags": [] }
   }
 }
