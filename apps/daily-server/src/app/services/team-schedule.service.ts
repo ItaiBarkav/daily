@@ -20,7 +20,12 @@ export class TeamScheduleService {
     return this.teamSchedule$.getValue();
   }
 
-  updateTeamSchedule(teamSchedule: TeamSchedule): void {
-    this.teamSchedule$.next(teamSchedule);
+  updateTeamSchedule(teamSchedule: TeamSchedule): boolean {
+    try {
+      this.teamSchedule$.next(teamSchedule);
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 }

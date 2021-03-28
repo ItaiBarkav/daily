@@ -255,6 +255,31 @@
           }
         }
       }
+    },
+    "apollo": {
+      "projectType": "library",
+      "root": "libs/apollo",
+      "sourceRoot": "libs/apollo/src",
+      "prefix": "manage-tool",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/apollo/src/**/*.ts",
+              "libs/apollo/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/apollo"],
+          "options": {
+            "jestConfig": "libs/apollo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -296,10 +321,14 @@
       }
     },
     "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {

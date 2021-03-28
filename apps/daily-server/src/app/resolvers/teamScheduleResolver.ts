@@ -10,21 +10,18 @@ export class TeamScheduleResolver {
 
   @Query(() => TeamSchedule)
   getTeamSchedule(): TeamSchedule {
-    return this.teamScheduleService.teamScheduleValue();
+    const teamSchedule = this.teamScheduleService.teamScheduleValue();
+    console.log('Get team schedule - ' + JSON.stringify(teamSchedule));
+
+    return teamSchedule;
   }
 
   @Mutation(() => Boolean)
   updateTeamSchedule(
     @Arg('teamSchedule') teamSchedule: InputTeamSchedule
   ): boolean {
-    this.teamScheduleService.updateTeamSchedule({
-      teamName: teamSchedule.teamName,
-      startDate: teamSchedule.startDate,
-      endDate: teamSchedule.endDate,
-      sprintDuration: teamSchedule.sprintDuration,
-      sprintNumber: teamSchedule.sprintNumber,
-      quarter: teamSchedule.quarter,
-    });
-    return true;
+    console.log('Update team schedule to - ' + JSON.stringify(teamSchedule));
+
+    return this.teamScheduleService.updateTeamSchedule(teamSchedule);
   }
 }

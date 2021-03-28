@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApolloModule } from '@manage-tool/apollo';
 import { MaterialModule } from '@manage-tool/material';
 import { UiModule } from '@manage-tool/ui';
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
@@ -26,6 +27,7 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     MaterialModule,
     UiModule,
+    ApolloModule,
   ],
   providers: [
     AuthGuard,

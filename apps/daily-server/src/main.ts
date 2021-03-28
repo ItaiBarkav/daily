@@ -17,10 +17,14 @@ import { TeamScheduleResolver } from './app/resolvers/teamScheduleResolver';
 
   const app = express();
 
-  apolloServer.applyMiddleware({ app, cors: false });
+  apolloServer.applyMiddleware({
+    app,
+    path: '/api',
+    cors: true,
+  });
 
   new Promise(() => app.listen({ port: 4000 }));
   console.log(
-    `🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`
+    `🚀 Daily server ready at http://localhost:4000${apolloServer.graphqlPath}`
   );
 })();

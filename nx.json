@@ -21,6 +21,7 @@
     "material": { "tags": [] },
     "ui": { "tags": [] },
     "models": { "tags": [] },
-    "daily-server": { "tags": [] }
+    "daily-server": { "tags": [] },
+    "apollo": { "tags": [] }
   }
 }
