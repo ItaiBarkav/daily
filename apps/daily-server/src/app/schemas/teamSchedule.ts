@@ -2,42 +2,42 @@ import { Field, InputType, Int, ObjectType } from 'type-graphql';
 
 @ObjectType()
 export class TeamSchedule {
-  @Field()
+  @Field({ nullable: true })
   teamName: string;
 
-  @Field()
+  @Field({ nullable: true })
   startDate: Date;
 
-  @Field()
+  @Field({ nullable: true })
   endDate: Date;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   sprintDuration: number;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   sprintNumber: number;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   quarter: number;
 }
 
 @InputType()
 export class InputTeamSchedule {
-  @Field()
+  @Field({ nullable: true })
   teamName: string;
 
-  @Field()
+  @Field({ nullable: true })
   startDate: Date;
 
-  @Field()
+  @Field({ nullable: true })
   endDate: Date;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   sprintDuration: number;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   sprintNumber: number;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   quarter: number;
 }

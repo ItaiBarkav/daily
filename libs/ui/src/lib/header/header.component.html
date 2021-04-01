@@ -9,8 +9,10 @@
             >{{ teamSchedule.startDate | date: 'd/M/yy' }} -
             {{ teamSchedule.endDate | date: 'd/M/yy' }}</span
           >
-          <span>S{{ teamSchedule.sprintNumber }}</span>
-          <span>Q{{ teamSchedule.quarter }}</span>
+          <span class="schedule">
+            <span>S{{ teamSchedule.sprintNumber }}&nbsp;</span>
+            <span>Q{{ teamSchedule.quarter }}</span>
+          </span>
         </span>
       </span>
     </div>

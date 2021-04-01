@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ApolloService } from '@manage-tool/apollo';
 import { TeamSchedule } from '@manage-tool/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -8,8 +9,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class TeamScheduleStoreService {
   private teamSchedule$ = new BehaviorSubject<TeamSchedule>(null);
 
-  constructor() {
+  constructor(private apolloService: ApolloService) {
     this.updateSchedule();
+    this.isLoginSubscribtion();
   }
 
   teamSchedule(): Observable<TeamSchedule> {
@@ -21,10 +23,12 @@ export class TeamScheduleStoreService {
   }
 
   updateTeamSchedule(teamSchedule: TeamSchedule): void {
+    this.updateApolloServer(teamSchedule);
     this.teamSchedule$.next(teamSchedule);
   }
 
   updateTeamScheduleFromSettings(teamSchedule: TeamSchedule): void {
+    this.updateApolloServer(teamSchedule);
     const currentTeamSchedule = this.teamScheduleValue();
 
     this.teamSchedule$.next({
@@ -37,6 +41,23 @@ export class TeamScheduleStoreService {
         teamSchedule.sprintNumber ?? currentTeamSchedule.sprintNumber,
       quarter: teamSchedule.quarter ?? currentTeamSchedule.quarter,
     });
+  }
+
+  private isLoginSubscribtion(): void {
+    this.apolloService
+      .getTeamSchedule()
+      .subscribe((teamSchedule: TeamSchedule) => {
+        if (teamSchedule) {
+          this.teamSchedule$.next(teamSchedule);
+        }
+      });
+  }
+
+  private updateApolloServer(teamSchedule: TeamSchedule): void {
+    if (!teamSchedule.teamName) {
+      teamSchedule.teamName = this.teamScheduleValue().teamName;
+    }
+    this.apolloService.updateTeamSchedule(teamSchedule);
   }
 
   private updateSchedule(): void {

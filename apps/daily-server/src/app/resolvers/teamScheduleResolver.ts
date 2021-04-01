@@ -8,7 +8,7 @@ import { TeamScheduleService } from '../services/team-schedule.service';
 export class TeamScheduleResolver {
   constructor(private teamScheduleService: TeamScheduleService) {}
 
-  @Query(() => TeamSchedule)
+  @Query(() => TeamSchedule, { nullable: true })
   getTeamSchedule(): TeamSchedule {
     const teamSchedule = this.teamScheduleService.teamScheduleValue();
     console.log('Get team schedule - ' + JSON.stringify(teamSchedule));

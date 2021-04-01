@@ -43,19 +43,19 @@ export class ApolloService {
   }
 
   getTeamSchedule(): Observable<TeamSchedule> {
-    let teamSchedule = new BehaviorSubject<TeamSchedule>(null);
+    let teamSchedule$ = new BehaviorSubject<TeamSchedule>(null);
 
     this.apollo
       .query({
         query: this.GET_TEAM_SCHEDULE,
       })
       .subscribe((teamSchedule: any) => {
-        teamSchedule.next(
+        teamSchedule$.next(
           JSON.parse(JSON.stringify(teamSchedule.data.getTeamSchedule))
         );
       });
 
-    return teamSchedule.asObservable();
+    return teamSchedule$.asObservable();
   }
 
   updateTeamSchedule(teamSchedule: TeamSchedule): void {
