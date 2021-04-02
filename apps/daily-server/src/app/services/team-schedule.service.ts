@@ -12,7 +12,7 @@ export class TeamScheduleService {
 
   constructor() {}
 
-  get teamSchedule(): Observable<TeamSchedule> {
+  teamSchedule(): Observable<TeamSchedule> {
     return this.teamSchedule$.asObservable();
   }
 

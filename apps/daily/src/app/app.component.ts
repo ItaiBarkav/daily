@@ -29,7 +29,7 @@ export class AppComponent {
   }
 
   private darkThemeSubscription(): void {
-    this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
+    this.themeService.isDarkTheme().subscribe((isDarkTheme: boolean) => {
       this.isDarkTheme = isDarkTheme;
     });
   }

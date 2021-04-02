@@ -22,9 +22,9 @@ export class HeaderComponent implements OnChanges {
   isDarkTheme: boolean;
 
   constructor(private themeService: ThemeService, private dialog: MatDialog) {
-    this.themeService.isDarkTheme.subscribe(
-      (isDarkTheme: boolean) => (this.isDarkTheme = isDarkTheme)
-    );
+    this.themeService
+      .isDarkTheme()
+      .subscribe((isDarkTheme: boolean) => (this.isDarkTheme = isDarkTheme));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

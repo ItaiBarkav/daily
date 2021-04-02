@@ -90,7 +90,7 @@ export class ApolloService {
           quarter: currentTeamSchedule.quarter,
         });
       }
-    }, 1000);
+    }, 3600000);
   }
 
   private updateEndDate(newEndDate: Date, sprintDuration: number): string {

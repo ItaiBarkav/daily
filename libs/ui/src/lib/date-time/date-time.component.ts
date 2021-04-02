@@ -19,7 +19,7 @@ export class DateTimeComponent {
     this.updateDateTime();
   }
 
-  get dateTime(): Observable<Date> {
+  dateTime(): Observable<Date> {
     return this.dateTime$.asObservable();
   }
 

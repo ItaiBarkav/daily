@@ -30,6 +30,10 @@ export class ThemeService {
     }
   }
 
+  isDarkTheme(): Observable<boolean> {
+    return this.isDarkTheme$.asObservable();
+  }
+
   private addToOverlay(): void {
     this.overlayContainer.getContainerElement().classList.add(this.DARK_THEME);
   }
@@ -38,9 +42,5 @@ export class ThemeService {
     this.overlayContainer
       .getContainerElement()
       .classList.remove(this.DARK_THEME);
-  }
-
-  get isDarkTheme(): Observable<boolean> {
-    return this.isDarkTheme$.asObservable();
   }
 }
