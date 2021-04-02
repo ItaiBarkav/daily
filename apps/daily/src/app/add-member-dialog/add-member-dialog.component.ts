@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { TeamMemberService } from '../services/team-members.service';
 
 @Component({
@@ -10,9 +11,20 @@ import { TeamMemberService } from '../services/team-members.service';
 export class AddMemberDialogComponent {
   name = new FormControl('', [Validators.required, Validators.minLength(2)]);
 
-  constructor(private addMemberService: TeamMemberService) {}
+  constructor(
+    private addMemberService: TeamMemberService,
+    private dialogRef: MatDialogRef<AddMemberDialogComponent>
+  ) {}
 
   addTeamMember(): void {
     this.addMemberService.addTeamMember(this.name.value);
+  }
+
+  @HostListener('document:keydown.enter', ['$event'])
+  keyEvent(): void {
+    if (this.name.valid) {
+      this.addTeamMember();
+      this.dialogRef.close();
+    }
   }
 }
