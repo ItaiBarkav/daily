@@ -3,12 +3,13 @@ import * as express from 'express';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import { Container } from 'typedi';
+import { TeamMembersResolver } from './app/resolvers/teamMembersResolver';
 import { TeamScheduleResolver } from './app/resolvers/teamScheduleResolver';
 
 (async () => {
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [TeamScheduleResolver],
+      resolvers: [TeamScheduleResolver, TeamMembersResolver],
       container: Container,
     }),
   });
