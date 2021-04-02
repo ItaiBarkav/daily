@@ -4,6 +4,11 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node", "express"]
   },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": true,
+    "strictTemplates": true
+  },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]
 }

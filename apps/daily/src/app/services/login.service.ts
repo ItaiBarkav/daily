@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApolloService } from '@manage-tool/apollo';
 import { TeamSchedule } from '@manage-tool/models';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { TeamScheduleStoreService } from './team-schedule-store.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +13,12 @@ export class LoginService {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private teamScheduleStoreService: TeamScheduleStoreService
+    private apolloService: ApolloService
   ) {}
 
   login(teamSchedule: TeamSchedule): void {
     this.authService.authLogin(true);
-    this.teamScheduleStoreService.updateTeamSchedule(teamSchedule);
+    this.apolloService.updateTeamSchedule(teamSchedule);
     this.router.navigate(['dashboard'], { relativeTo: this.route });
   }
 

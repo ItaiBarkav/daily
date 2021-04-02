@@ -22,7 +22,19 @@ export class TeamScheduleService {
 
   updateTeamSchedule(teamSchedule: TeamSchedule): boolean {
     try {
-      this.teamSchedule$.next(teamSchedule);
+      const currentTeamSchedule = this.teamScheduleValue();
+
+      this.teamSchedule$.next({
+        teamName: teamSchedule.teamName ?? currentTeamSchedule.teamName,
+        startDate: teamSchedule.startDate ?? currentTeamSchedule.startDate,
+        endDate: teamSchedule.endDate ?? currentTeamSchedule.endDate,
+        sprintDuration:
+          teamSchedule.sprintDuration ?? currentTeamSchedule.sprintDuration,
+        sprintNumber:
+          teamSchedule.sprintNumber ?? currentTeamSchedule.sprintNumber,
+        quarter: teamSchedule.quarter ?? currentTeamSchedule.quarter,
+      });
+
       return true;
     } catch (error) {
       return false;

@@ -26,7 +26,7 @@ export class AuthService {
 
   private isLoginSubscribtion(): void {
     this.apolloService
-      .getTeamSchedule()
+      .teamSchedule()
       .subscribe((teamSchedule: TeamSchedule) => {
         if (teamSchedule) {
           this.authLogin(true);

@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ApolloService } from '@manage-tool/apollo';
 import { TeamSchedule } from '@manage-tool/models';
 import { ThemeService } from 'libs/ui/src/lib/theme.service';
 import { LoginService } from './services/login.service';
-import { TeamScheduleStoreService } from './services/team-schedule-store.service';
 
 @Component({
   selector: 'manage-tool-root',
@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(
     private themeService: ThemeService,
     private loginService: LoginService,
-    private teamScheduleStoreService: TeamScheduleStoreService
+    private apolloService: ApolloService
   ) {
     this.darkThemeSubscription();
     this.loginSubscription();
@@ -25,7 +25,7 @@ export class AppComponent {
   }
 
   updateTeamSchedule(teamSchedule: TeamSchedule): void {
-    this.teamScheduleStoreService.updateTeamScheduleFromSettings(teamSchedule);
+    this.apolloService.updateTeamSchedule(teamSchedule);
   }
 
   private darkThemeSubscription(): void {
@@ -37,13 +37,13 @@ export class AppComponent {
   private loginSubscription(): void {
     this.loginService.islogin().subscribe((isLogin: boolean) => {
       if (isLogin) {
-        this.teamSchedule = this.teamScheduleStoreService.teamScheduleValue();
+        this.teamSchedule = this.apolloService.teamScheduleValue();
       }
     });
   }
 
   private teamScheduleSubscription(): void {
-    this.teamScheduleStoreService
+    this.apolloService
       .teamSchedule()
       .subscribe(
         (teamSchedule: TeamSchedule) => (this.teamSchedule = teamSchedule)

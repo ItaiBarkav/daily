@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TeamSchedule } from '@manage-tool/models';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -27,8 +27,12 @@ export class ApolloService {
   `;
 
   private teamSchedule$ = new BehaviorSubject<TeamSchedule>(null);
+  private getQueryRef = this.getTeamSchedule();
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) {
+    this.getQuerySubscribtion();
+    this.updateSchedule();
+  }
 
   teamSchedule(): Observable<TeamSchedule> {
     return this.teamSchedule$.asObservable();
@@ -36,26 +40,6 @@ export class ApolloService {
 
   teamScheduleValue(): TeamSchedule {
     return this.teamSchedule$.value;
-  }
-
-  changeTeamSchedule(teamSchedule: TeamSchedule): void {
-    this.teamSchedule$.next(teamSchedule);
-  }
-
-  getTeamSchedule(): Observable<TeamSchedule> {
-    let teamSchedule$ = new BehaviorSubject<TeamSchedule>(null);
-
-    this.apollo
-      .query({
-        query: this.GET_TEAM_SCHEDULE,
-      })
-      .subscribe((teamSchedule: any) => {
-        teamSchedule$.next(
-          JSON.parse(JSON.stringify(teamSchedule.data.getTeamSchedule))
-        );
-      });
-
-    return teamSchedule$.asObservable();
   }
 
   updateTeamSchedule(teamSchedule: TeamSchedule): void {
@@ -68,6 +52,48 @@ export class ApolloService {
       })
       .subscribe();
 
-    this.teamSchedule$.next(teamSchedule);
+    this.getQueryRef.refetch();
+  }
+
+  private getTeamSchedule(): QueryRef<any> {
+    return this.apollo.watchQuery<any>({
+      query: this.GET_TEAM_SCHEDULE,
+    });
+  }
+
+  private getQuerySubscribtion(): void {
+    this.getQueryRef.valueChanges.subscribe(({ data }) => {
+      this.teamSchedule$.next(data.getTeamSchedule);
+    });
+  }
+
+  private updateSchedule(): void {
+    setInterval(() => {
+      if (
+        this.teamScheduleValue() &&
+        new Date().getDate() > this.teamScheduleValue().endDate.getDate()
+      ) {
+        const currentTeamSchedule = this.teamScheduleValue();
+        const newStartDate = new Date(currentTeamSchedule.endDate);
+        const newEndDate = new Date(currentTeamSchedule.endDate);
+
+        this.updateTeamSchedule({
+          teamName: currentTeamSchedule.teamName,
+          startDate: newStartDate,
+          endDate: this.updateEndDate(
+            newEndDate,
+            currentTeamSchedule.sprintDuration
+          ),
+          sprintDuration: currentTeamSchedule.sprintDuration,
+          sprintNumber: ++currentTeamSchedule.sprintNumber,
+          quarter: currentTeamSchedule.quarter,
+        });
+      }
+    }, 1000);
+  }
+
+  private updateEndDate(newEndDate: Date, sprintDuration: number): Date {
+    newEndDate.setDate(newEndDate.getDate() + sprintDuration);
+    return newEndDate;
   }
 }
