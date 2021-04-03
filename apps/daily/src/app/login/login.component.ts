@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TeamSchedule } from '@manage-tool/models';
+import { LoginStatus, TeamSchedule } from '@manage-tool/models';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { LoginService } from '../services/login.service';
 
@@ -11,21 +11,23 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent {
   constructor(private loginService: LoginService, private router: Router) {
-    this.isLoginSubscribtion();
+    this.isLoginSubscription();
   }
 
   login(teamSchedule: TeamSchedule): void {
     this.loginService.login(teamSchedule);
   }
 
-  private isLoginSubscribtion(): void {
+  private isLoginSubscription(): void {
     this.loginService
       .islogin()
       .pipe(
         distinctUntilChanged(),
-        map((isLogin: boolean) => {
-          if (isLogin) {
-            this.router.navigate(['/dashboard']);
+        map((loginStatus: LoginStatus) => {
+          if (loginStatus.isLogin) {
+            this.router.navigate(['/dashboard'], {
+              queryParams: { team: loginStatus.teamName },
+            });
           }
         })
       )

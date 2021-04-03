@@ -1,9 +1,13 @@
 <div class="dashboard">
   <div class="team-members">
     <manage-tool-team-member-card
-      *ngFor="let name of getTeamMembersNames() | async"
-      [name]="name"
+      #teamMembersCard
+      *ngFor="let teamMember of teamMembers"
+      [name]="teamMember.name"
+      [inputGoals]="teamMember.goals"
+      [inputFinishedGoals]="teamMember.finishedGoals"
       (delete)="deleteMember($event)"
+      (valueChange)="updateTeamMembers()"
     ></manage-tool-team-member-card>
   </div>
   <div class="options">

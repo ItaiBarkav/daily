@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ApolloService } from '@manage-tool/apollo';
-import { TeamSchedule } from '@manage-tool/models';
+import { LoginStatus, TeamSchedule } from '@manage-tool/models';
 import { ThemeService } from 'libs/ui/src/lib/theme.service';
 import { LoginService } from './services/login.service';
 
@@ -35,8 +35,8 @@ export class AppComponent {
   }
 
   private loginSubscription(): void {
-    this.loginService.islogin().subscribe((isLogin: boolean) => {
-      if (isLogin) {
+    this.loginService.islogin().subscribe((loginStatus: LoginStatus) => {
+      if (loginStatus.isLogin) {
         this.teamSchedule = this.apolloService.teamScheduleValue();
       }
     });

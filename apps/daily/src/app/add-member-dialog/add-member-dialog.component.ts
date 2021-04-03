@@ -12,12 +12,12 @@ export class AddMemberDialogComponent {
   name = new FormControl('', [Validators.required, Validators.minLength(2)]);
 
   constructor(
-    private addMemberService: TeamMemberService,
+    private teamMemberService: TeamMemberService,
     private dialogRef: MatDialogRef<AddMemberDialogComponent>
   ) {}
 
   addTeamMember(): void {
-    this.addMemberService.addTeamMember(this.name.value);
+    this.teamMemberService.addTeamMember(this.name.value);
   }
 
   @HostListener('document:keydown.enter', ['$event'])

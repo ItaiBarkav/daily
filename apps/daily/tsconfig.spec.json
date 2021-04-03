@@ -5,6 +5,12 @@
     "module": "commonjs",
     "types": ["jest", "node"]
   },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true,
+    "strictTemplates": true
+  },
   "files": ["src/test-setup.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

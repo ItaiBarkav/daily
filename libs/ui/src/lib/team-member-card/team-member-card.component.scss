@@ -3,14 +3,13 @@
 }
 
 .mat-card {
-  max-height: 280px;
   max-width: 295px;
   margin: 6px;
 }
 
 .goals {
   display: grid !important;
-  max-height: 146px;
+  max-height: 148px;
   overflow-y: scroll;
   overflow-x: hidden;
 }

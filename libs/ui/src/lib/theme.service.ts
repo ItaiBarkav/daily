@@ -20,8 +20,8 @@ export class ThemeService {
   }
 
   changeTheme(): void {
-    this.isDarkTheme$.next(!this.isDarkTheme$.value);
-    if (this.isDarkTheme$.value) {
+    this.isDarkTheme$.next(!this.isDarkTheme$.getValue());
+    if (this.isDarkTheme$.getValue()) {
       localStorage.setItem(this.IS_DARK_THEME, 'true');
       this.addToOverlay();
     } else {

@@ -3,5 +3,11 @@
   "include": ["**/*.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true,
+    "strictTemplates": true
   }
 }

@@ -2,11 +2,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'manage-tool-team-member-card',
@@ -14,18 +16,34 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./team-member-card.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class TeamMemberCardComponent {
+export class TeamMemberCardComponent implements OnInit {
   @Input() name: string;
+  @Input() inputGoals: string[];
+  @Input() inputFinishedGoals: string[];
   @Output() delete = new EventEmitter<string>();
+  @Output() valueChange = new EventEmitter<void>();
 
   goals = new FormArray([]);
   finishedGoals = new FormArray([]);
 
   constructor() {}
 
-  addGoal(): void {
+  ngOnInit(): void {
+    if (this.inputGoals?.length > 0) {
+      this.inputGoals.forEach((element) => {
+        this.addGoal(element);
+      });
+    }
+    if (this.inputFinishedGoals?.length > 0) {
+      this.inputFinishedGoals.forEach((element) => {
+        this.addFinishedGoal(element);
+      });
+    }
+  }
+
+  addGoal(goal: string = ''): void {
     this.goals.push(
-      new FormControl('', [Validators.required, Validators.minLength(2)])
+      new FormControl(goal, [Validators.required, Validators.minLength(2)])
     );
   }
 
@@ -37,6 +55,7 @@ export class TeamMemberCardComponent {
     if (event.checked) {
       this.finishedGoals.push(this.spliceFormArray(this.goals, index));
       this.disableFormControls();
+      this.emitValueChange();
     }
   }
 
@@ -44,11 +63,33 @@ export class TeamMemberCardComponent {
     if (!event.checked) {
       this.goals.push(this.spliceFormArray(this.finishedGoals, index));
       this.enableFormControls();
+      this.emitValueChange();
     }
   }
 
   deleteCard(): void {
     this.delete.emit(this.name);
+  }
+
+  valueChanges(): void {
+    merge(
+      this.goals.valueChanges,
+      this.finishedGoals.valueChanges
+    ).subscribe(() => this.emitValueChange());
+  }
+
+  private emitValueChange(): void {
+    return this.valueChange.emit();
+  }
+
+  private addFinishedGoal(finishedGoal: string = ''): void {
+    this.finishedGoals.push(
+      new FormControl(finishedGoal, [
+        Validators.required,
+        Validators.minLength(2),
+      ])
+    );
+    this.disableFormControls();
   }
 
   private spliceFormArray(formArray: FormArray, index: number): FormControl {

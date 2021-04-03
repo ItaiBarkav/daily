@@ -11,6 +11,7 @@
           type="text"
           placeholder="Add goal"
           [formControl]="goals.controls[i]"
+          (input)="valueChanges()"
       /></mat-form-field>
       <button
         class="icon"

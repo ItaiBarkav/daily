@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TeamSchedule } from '@manage-tool/models';
+import { TeamMembers, TeamSchedule } from '@manage-tool/models';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -26,11 +26,33 @@ export class ApolloService {
     }
   `;
 
+  private readonly GET_TEAM_MEMBERS = gql`
+    query getTeamMembers {
+      getTeamMembers {
+        teamName
+        teamMembers {
+          name
+          goals
+          finishedGoals
+        }
+      }
+    }
+  `;
+
+  private readonly UPDATE_TEAM_MEMBERS = gql`
+    mutation updateTeamMembers($teamMembers: InputTeamMembers!) {
+      updateTeamMembers(teamMembers: $teamMembers)
+    }
+  `;
+
   private teamSchedule$ = new BehaviorSubject<TeamSchedule>(null);
-  private getQueryRef = this.getTeamSchedule();
+  private teamMembers$ = new BehaviorSubject<TeamMembers>(null);
+  private getTeamScheduleQueryRef = this.getTeamSchedule();
+  private getTeamMembersQueryRef = this.getTeamMembers();
 
   constructor(private apollo: Apollo) {
-    this.getQuerySubscribtion();
+    this.getTeamScheduleQuerySubscription();
+    this.getTeamMembersQuerySubscription();
     this.updateSchedule();
   }
 
@@ -39,7 +61,15 @@ export class ApolloService {
   }
 
   teamScheduleValue(): TeamSchedule {
-    return this.teamSchedule$.value;
+    return this.teamSchedule$.getValue();
+  }
+
+  teamMembers(): Observable<TeamMembers> {
+    return this.teamMembers$.asObservable();
+  }
+
+  teamMembersValue(): TeamMembers {
+    return this.teamMembers$.getValue();
   }
 
   updateTeamSchedule(teamSchedule: TeamSchedule): void {
@@ -52,7 +82,18 @@ export class ApolloService {
       })
       .subscribe();
 
-    this.getQueryRef.refetch();
+    this.getTeamScheduleQueryRef.refetch();
+  }
+
+  updateTeamMembers(teamMembers: TeamMembers): void {
+    this.apollo
+      .mutate({
+        mutation: this.UPDATE_TEAM_MEMBERS,
+        variables: {
+          teamMembers: teamMembers,
+        },
+      })
+      .subscribe();
   }
 
   private getTeamSchedule(): QueryRef<any> {
@@ -61,9 +102,21 @@ export class ApolloService {
     });
   }
 
-  private getQuerySubscribtion(): void {
-    this.getQueryRef.valueChanges.subscribe(({ data }) => {
+  private getTeamScheduleQuerySubscription(): void {
+    this.getTeamScheduleQueryRef.valueChanges.subscribe(({ data }) => {
       this.teamSchedule$.next(data.getTeamSchedule);
+    });
+  }
+
+  private getTeamMembers(): QueryRef<any> {
+    return this.apollo.watchQuery<any>({
+      query: this.GET_TEAM_MEMBERS,
+    });
+  }
+
+  private getTeamMembersQuerySubscription(): void {
+    this.getTeamMembersQueryRef.valueChanges.subscribe(({ data }) => {
+      this.teamMembers$.next(data.getTeamMembers);
     });
   }
 

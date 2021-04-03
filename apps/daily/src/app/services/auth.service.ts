@@ -1,35 +1,41 @@
 import { Injectable } from '@angular/core';
 import { ApolloService } from '@manage-tool/apollo';
-import { TeamSchedule } from '@manage-tool/models';
+import { LoginStatus, TeamSchedule } from '@manage-tool/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private isLogin$ = new BehaviorSubject(false);
+  private isLogin$ = new BehaviorSubject<LoginStatus>({
+    isLogin: false,
+    teamName: null,
+  });
 
   constructor(private apolloService: ApolloService) {}
 
-  isAuth(): Observable<boolean> {
-    this.isLoginSubscribtion();
+  isAuth(): Observable<LoginStatus> {
+    this.isLoginSubscription();
     return this.isLogin$.asObservable();
   }
 
-  isAuthValue(): boolean {
-    return this.isLogin$.value;
+  isAuthValue(): LoginStatus {
+    return this.isLogin$.getValue();
   }
 
-  authLogin(isLogin: boolean): void {
-    this.isLogin$.next(isLogin);
+  authLogin(isLogin: boolean, teamName: string): void {
+    this.isLogin$.next({
+      isLogin: isLogin,
+      teamName: teamName,
+    });
   }
 
-  private isLoginSubscribtion(): void {
+  private isLoginSubscription(): void {
     this.apolloService
       .teamSchedule()
       .subscribe((teamSchedule: TeamSchedule) => {
         if (teamSchedule) {
-          this.authLogin(true);
+          this.authLogin(true, teamSchedule.teamName);
         }
       });
   }
