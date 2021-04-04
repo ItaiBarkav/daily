@@ -24,7 +24,7 @@ import { TeamScheduleResolver } from './app/resolvers/teamScheduleResolver';
     cors: true,
   });
 
-  new Promise(() => app.listen({ port: 4000 }));
+  new Promise(() => app.listen({ port: process.env.PORT || 4000 }));
   console.log(
     `🚀 Daily server ready at http://localhost:4000${apolloServer.graphqlPath}`
   );
