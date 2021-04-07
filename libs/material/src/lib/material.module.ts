@@ -1,6 +1,5 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -20,7 +19,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
-    FlexLayoutModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
@@ -40,7 +38,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ScrollingModule,
   ],
   exports: [
-    FlexLayoutModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
