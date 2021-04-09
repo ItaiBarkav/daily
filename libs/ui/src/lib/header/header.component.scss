@@ -1,5 +1,5 @@
 .header {
-  display: grid;
+  display: grid !important;
   grid-template-columns: auto 1fr auto auto auto;
   border: 10px;
   align-items: center;
