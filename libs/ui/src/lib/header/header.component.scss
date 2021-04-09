@@ -40,3 +40,10 @@
 .schedule {
   font-size: 12pt;
 }
+
+.mat-slide-toggle-thumb {
+  background-image: url('./assets/dark-mode.png');
+  background-origin: content-box;
+  background-size: contain;
+  background-position: center center;
+}

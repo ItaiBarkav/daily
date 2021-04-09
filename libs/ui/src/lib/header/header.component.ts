@@ -5,6 +5,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TeamSchedule } from '@manage-tool/models';
@@ -15,6 +16,7 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
   selector: 'manage-tool-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnChanges {
   @Input() teamSchedule: TeamSchedule;
