@@ -16,7 +16,7 @@ import { HttpLink } from 'apollo-angular/http';
             addTypename: false,
           }),
           link: httpLink.create({
-            uri: 'http://localhost:4000/api',
+            uri: 'https://daily-server.azurewebsites.net/api',
             headers: new HttpHeaders({
               'Content-Type': 'application/json',
             }),
