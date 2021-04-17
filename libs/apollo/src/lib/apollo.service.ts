@@ -71,7 +71,8 @@ export class ApolloService {
     setInterval(() => {
       if (
         this.teamScheduleValue() &&
-        new Date().getDate() > this.teamScheduleValue().endDate.getDate()
+        new Date().getDate() >
+          new Date(this.teamScheduleValue().endDate).getDate()
       ) {
         const currentTeamSchedule = this.teamScheduleValue();
         const newStartDate = new Date(currentTeamSchedule.endDate);
@@ -79,21 +80,21 @@ export class ApolloService {
 
         this.updateTeamSchedule({
           teamName: currentTeamSchedule.teamName,
-          startDate: newStartDate,
+          startDate: newStartDate.toDateString(),
           endDate: this.updateEndDate(
             newEndDate,
             currentTeamSchedule.sprintDuration
           ),
           sprintDuration: currentTeamSchedule.sprintDuration,
-          sprintNumber: ++currentTeamSchedule.sprintNumber,
+          sprintNumber: currentTeamSchedule.sprintNumber + 1,
           quarter: currentTeamSchedule.quarter,
         });
       }
     }, 1000);
   }
 
-  private updateEndDate(newEndDate: Date, sprintDuration: number): Date {
+  private updateEndDate(newEndDate: Date, sprintDuration: number): string {
     newEndDate.setDate(newEndDate.getDate() + sprintDuration);
-    return newEndDate;
+    return newEndDate.toDateString();
   }
 }

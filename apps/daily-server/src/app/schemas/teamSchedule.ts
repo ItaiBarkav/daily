@@ -6,10 +6,10 @@ export class TeamSchedule {
   teamName: string;
 
   @Field({ nullable: true })
-  startDate: Date;
+  startDate: string;
 
   @Field({ nullable: true })
-  endDate: Date;
+  endDate: string;
 
   @Field(() => Int, { nullable: true })
   sprintDuration: number;
@@ -27,10 +27,10 @@ export class InputTeamSchedule {
   teamName: string;
 
   @Field({ nullable: true })
-  startDate: Date;
+  startDate: string;
 
   @Field({ nullable: true })
-  endDate: Date;
+  endDate: string;
 
   @Field(() => Int, { nullable: true })
   sprintDuration: number;
