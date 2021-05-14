@@ -3,19 +3,18 @@
 }
 
 .mat-card {
-  max-width: 295px;
-  margin: 6px;
+  margin: 10px;
 }
 
 .goals {
   display: grid !important;
-  max-height: 148px;
+  max-height: 12em;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 .finished-goals {
-  max-height: 110px;
+  max-height: 10em;
 }
 
 ::-webkit-scrollbar {
@@ -32,7 +31,7 @@
 }
 
 .mat-form-field {
-  width: 235px;
+  width: 100% !important;
 }
 
 .mat-form-field-appearance-standard .mat-form-field-flex {
@@ -48,7 +47,7 @@
 }
 
 .mat-card-content {
-  margin: 0px;
+  margin: 0px !important;
 }
 
 .add-goal {

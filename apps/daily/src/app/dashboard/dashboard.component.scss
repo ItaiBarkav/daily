@@ -15,8 +15,8 @@
 }
 
 .team-members {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   margin: 10px;
+  grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
   height: fit-content;
 }
